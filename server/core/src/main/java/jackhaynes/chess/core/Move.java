@@ -1,10 +1,13 @@
 package jackhaynes.chess.core;
 
 public class Move {
-    private int fromX;
-    private int toX;
-    private int fromY;
-    private int toY;
+    private final int fromX;
+    private final int toX;
+    private final int fromY;
+    private final int toY;
+
+    private MoveType type;
+    private int steps;
 
     public Move(int fromX, int toX, int fromY, int toY) {
         this.fromX = fromX;
@@ -14,11 +17,15 @@ public class Move {
     }
 
     public MoveType getType() {
+        if(type != null) {
+            return this.type;
+        }
+
         if(fromX == toX && fromY == toY) {
             return MoveType.STATIC;
         }
 
-        if(fromX == toX || fromY == toY) {
+        if(this.fromX == toX || fromY == toY) {
             return MoveType.STRAIGHT;
         } else {
             int deltaX = Math.abs(fromX - toX);
@@ -33,6 +40,13 @@ public class Move {
     }
 
     public int getSteps() {
-        throw new UnsupportedOperationException();
+        if(getType() == MoveType.STRAIGHT) {
+            int deltaX = Math.abs(this.fromX - this.toX);
+            int deltaY = Math.abs(this.fromY - this.toY);
+
+            return(Math.max(deltaX, deltaY));
+        }
+
+        return 0;
     }
  }

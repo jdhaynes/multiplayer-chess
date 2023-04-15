@@ -59,4 +59,26 @@ public class MoveTest {
                 () -> assertEquals(MoveType.INVALID_DIAGONAL, longerVertical.getType())
         );
     }
+
+    @Test
+    public void Given_HorizontalMove_When_GetSteps_Should_ReturnCorrectNumber() {
+        Move leftOneMove = new Move(4, 3, 2, 2);
+        Move rightTwoMoves = new Move(4, 6, 2, 2);
+
+        assertAll(
+                () -> assertEquals(1, leftOneMove.getSteps()),
+                () -> assertEquals(2, rightTwoMoves.getSteps())
+        );
+    }
+
+    @Test
+    public void Given_VerticalMove_When_GetSteps_Should_ReturnCorrectNumber() {
+        Move upOneMove = new Move(2, 2, 5, 4);
+        Move downTwoMoves = new Move(2, 2, 5, 7);
+
+        assertAll(
+                () -> assertEquals(1, upOneMove.getSteps()),
+                () -> assertEquals(2, downTwoMoves.getSteps())
+        );
+    }
 }

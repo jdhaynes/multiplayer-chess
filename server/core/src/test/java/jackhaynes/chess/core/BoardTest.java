@@ -1,6 +1,7 @@
 package jackhaynes.chess.core;
 
 import jackhaynes.chess.core.pieces.Piece;
+import jackhaynes.chess.core.pieces.PieceColour;
 import jackhaynes.chess.core.pieces.PieceType;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -12,7 +13,7 @@ class BoardTest {
     private final int EXPECTED_Y_DIM = 8;
 
     private class PieceStub extends Piece {
-        public PieceStub(Board board, Colour colour) {
+        public PieceStub(Board board, PieceColour colour) {
             super(board, colour);
         }
 
@@ -42,7 +43,7 @@ class BoardTest {
     public void Given_PlacedPiece_When_GetPieceAtPos_Should_ReturnCorrectPiece() {
         Board board = new Board();
 
-        Piece piece = new PieceStub(board, Colour.BLACK);
+        Piece piece = new PieceStub(board, PieceColour.BLACK);
         board.placePiece(piece, 4, 5);
 
         Assertions.assertEquals(piece, board.getPiece(4,5));
@@ -53,10 +54,10 @@ class BoardTest {
         Board board = new Board();
 
         // Test covers pieces placed left, right, above and below board.
-        Piece leftPiece = new PieceStub(board, Colour.BLACK);
-        Piece rightPiece = new PieceStub(board, Colour.BLACK);
-        Piece topPiece = new PieceStub(board, Colour.BLACK);
-        Piece bottomPiece = new PieceStub(board, Colour.BLACK);
+        Piece leftPiece = new PieceStub(board, PieceColour.BLACK);
+        Piece rightPiece = new PieceStub(board, PieceColour.BLACK);
+        Piece topPiece = new PieceStub(board, PieceColour.BLACK);
+        Piece bottomPiece = new PieceStub(board, PieceColour.BLACK);
 
         board.placePiece(leftPiece, -1, EXPECTED_Y_DIM / 2);
         board.placePiece(rightPiece, EXPECTED_X_DIM, EXPECTED_Y_DIM / 2);
@@ -85,7 +86,7 @@ class BoardTest {
     public void Given_PlacedPiece_When_RemovePiece_Should_RemoveFromBoard() {
         Board board = new Board();
 
-        board.placePiece(new PieceStub(board, Colour.BLACK), 3, 4);
+        board.placePiece(new PieceStub(board, PieceColour.BLACK), 3, 4);
         board.removePiece(3, 4);
 
         assertNull(board.getPiece(3, 4));

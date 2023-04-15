@@ -1,10 +1,9 @@
 package jackhaynes.chess.core.pieces;
 
 import jackhaynes.chess.core.Board;
-import jackhaynes.chess.core.Colour;
 
 public class King extends Piece {
-    public King(Board board, Colour colour) {
+    public King(Board board, PieceColour colour) {
         super(board, colour);
     }
 
