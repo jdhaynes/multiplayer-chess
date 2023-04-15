@@ -6,7 +6,7 @@ import jackhaynes.chess.core.PieceColour;
 import jackhaynes.chess.core.PieceType;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PieceTest {
     private class GenericPiece extends Piece {
@@ -32,4 +32,27 @@ public class PieceTest {
         assertEquals(PieceColour.WHITE, piece.getColour());
     }
 
+    @Test
+    public void Given_NewPiece_When_GetHasMoved_Should_HaveNotMoved() {
+        Piece piece = new GenericPiece(new Board(), PieceColour.WHITE, 2, 2);
+        assertFalse(piece.hasMoved);
+    }
+
+    @Test
+    public void Given_MovedPiece_When_GetHasMoved_Should_HaveMoved() {
+        Piece piece = new GenericPiece(new Board(), PieceColour.WHITE, 2, 2);
+        piece.move(3, 3);
+        assertTrue(piece.hasMoved());
+    }
+
+    @Test
+    public void Given_Piece_When_Move_Should_UpdatePosition() {
+        Piece piece = new GenericPiece(new Board(), PieceColour.WHITE, 2, 2);
+        piece.move(5, 1);
+
+        assertAll(
+                () -> assertEquals(5, piece.getX()),
+                () -> assertEquals(1, piece.getY())
+        );
+    }
 }

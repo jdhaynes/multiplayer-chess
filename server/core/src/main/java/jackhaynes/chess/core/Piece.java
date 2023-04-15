@@ -20,7 +20,7 @@ public abstract class Piece {
     public abstract boolean canMoveTo(int toX, int toY);
 
     public void move(int toX, int toY) {
-        if(!this.board.positionIsWithinBoard(toX, toY)) {
+        if(this.board.positionIsWithinBoard(toX, toY)) {
             this.x = toX;
             this.y = toY;
             this.hasMoved = true;
@@ -32,10 +32,12 @@ public abstract class Piece {
     }
 
     public int getX() {
-        return x;
+        return this.x;
     }
 
     public int getY() {
-        return y;
+        return this.y;
     }
+
+    public boolean hasMoved() { return this.hasMoved; }
 }
