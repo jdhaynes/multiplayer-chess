@@ -1,7 +1,5 @@
 package jackhaynes.chess.core;
 
-import jackhaynes.chess.core.pieces.Piece;
-
 public class Board {
     private final int X_DIMENSION = 8;
     private final int Y_DIMENSION = 8;

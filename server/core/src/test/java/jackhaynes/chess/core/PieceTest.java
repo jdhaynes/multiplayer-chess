@@ -1,6 +1,9 @@
-package jackhaynes.chess.core.pieces;
+package jackhaynes.chess.core;
 
 import jackhaynes.chess.core.Board;
+import jackhaynes.chess.core.Piece;
+import jackhaynes.chess.core.PieceColour;
+import jackhaynes.chess.core.PieceType;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

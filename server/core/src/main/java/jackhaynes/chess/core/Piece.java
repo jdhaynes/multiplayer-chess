@@ -1,6 +1,4 @@
-package jackhaynes.chess.core.pieces;
-
-import jackhaynes.chess.core.Board;
+package jackhaynes.chess.core;
 
 public abstract class Piece {
     protected final Board board;
@@ -17,7 +15,7 @@ public abstract class Piece {
     }
 
     public abstract PieceType getType();
-    public abstract boolean canMoveTo(int x, int y);
+    public abstract boolean canMoveTo(int toX, int toY);
 
     public PieceColour getColour() {
         return this.colour;

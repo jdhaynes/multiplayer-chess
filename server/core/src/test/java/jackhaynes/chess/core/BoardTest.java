@@ -1,8 +1,5 @@
 package jackhaynes.chess.core;
 
-import jackhaynes.chess.core.pieces.Piece;
-import jackhaynes.chess.core.pieces.PieceColour;
-import jackhaynes.chess.core.pieces.PieceType;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

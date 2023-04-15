@@ -1,6 +1,9 @@
 package jackhaynes.chess.core.pieces;
 
 import jackhaynes.chess.core.Board;
+import jackhaynes.chess.core.Piece;
+import jackhaynes.chess.core.PieceColour;
+import jackhaynes.chess.core.PieceType;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -48,6 +51,20 @@ public class KingTest {
                 () -> assertFalse(piece.canMoveTo(6, 3)),
                 () -> assertFalse(piece.canMoveTo(3, 5)),
                 () -> assertFalse(piece.canMoveTo(1, 3))
+        );
+    }
+
+    @Test
+    public void Given_SingleKing_When_MoveToOffBoard_Should_NotBeValid() {
+        Board board = new Board();
+        Piece piece = new King(new Board(), PieceColour.BLACK, 3, 3);
+
+        // Test each side of board at first position out of bounds
+        assertAll(
+                () -> assertFalse(piece.canMoveTo(-1, 3)),
+                () -> assertFalse(piece.canMoveTo(board.getXDimension(), 3)),
+                () -> assertFalse(piece.canMoveTo(3, -1)),
+                () -> assertFalse(piece.canMoveTo(3, board.getYDimension()))
         );
     }
 }
