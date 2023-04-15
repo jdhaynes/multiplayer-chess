@@ -21,5 +21,4 @@ public class Bishop extends Piece {
         Move move = new Move(this.x, toX, this.y, toY);
         return move.getType() == MoveType.VALID_DIAGONAL;
     }
-
 }
