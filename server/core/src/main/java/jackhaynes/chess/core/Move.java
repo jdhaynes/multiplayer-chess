@@ -1,25 +1,35 @@
 package jackhaynes.chess.core;
 
-import jackhaynes.chess.core.pieces.Piece;
-
 public class Move {
-    private Piece piece;
-
     private int fromX;
-    private int fromY;
     private int toX;
+    private int fromY;
     private int toY;
 
-    public Move(Piece piece, int fromX, int fromY, int toX, int toY) {
-        this.piece = piece;
+    public Move(int fromX, int toX, int fromY, int toY) {
         this.fromX = fromX;
-        this.fromY = fromY;
         this.toX = toX;
+        this.fromY = fromY;
         this.toY = toY;
     }
 
-    public MoveDirection getDirection() {
-        throw new UnsupportedOperationException();
+    public MoveType getType() {
+        if(fromX == toX && fromY == toY) {
+            return MoveType.STATIC;
+        }
+
+        if(fromX == toX || fromY == toY) {
+            return MoveType.STRAIGHT;
+        } else {
+            int deltaX = Math.abs(fromX - toX);
+            int deltaY = Math.abs(fromY - toY);
+
+            if(deltaX == deltaY) {
+                return MoveType.VALID_DIAGONAL;
+            } else {
+                return MoveType.INVALID_DIAGONAL;
+            }
+        }
     }
 
     public int getSteps() {
