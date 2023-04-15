@@ -1,7 +1,7 @@
-package jackhaynes.pieces;
+package jackhaynes.chess.core.pieces;
 
-import jackhaynes.Board;
-import jackhaynes.Colour;
+import jackhaynes.chess.core.Board;
+import jackhaynes.chess.core.Colour;
 
 public class King extends Piece {
     public King(Board board, Colour colour) {
@@ -17,5 +17,4 @@ public class King extends Piece {
     public boolean canMoveTo(int x, int y) {
         return false;
     }
-
 }

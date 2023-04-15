@@ -1,4 +1,4 @@
-package jackhaynes.pieces;
+package jackhaynes.chess.core.pieces;
 
 public enum PieceType {
     KING,

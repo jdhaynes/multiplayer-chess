@@ -1,6 +1,6 @@
-package jackhaynes;
+package jackhaynes.chess.core;
 
-import jackhaynes.pieces.Piece;
+import jackhaynes.chess.core.pieces.Piece;
 
 public class Board {
     private final int X_DIMENSION = 8;
