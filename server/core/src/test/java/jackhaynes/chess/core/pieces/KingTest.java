@@ -8,12 +8,12 @@ import static org.junit.jupiter.api.Assertions.*;
 public class KingTest {
     @Test
     public void Given_NewPiece_When_GetType_Should_BeKing() {
-        Piece piece = new King(new Board(), PieceColour.BLACK);
+        Piece piece = new King(new Board(), PieceColour.BLACK, 2, 2);
         assertEquals(PieceType.KING, piece.getType());
     }
 
     @Test
     public void Given_HasBoardSpace_When_MoveOneHorizontally_Should_BeValid() {
-        Piece piece = new King(new Board(), PieceColour.BLACK);
+        Piece piece = new King(new Board(), PieceColour.BLACK, 3, 3);
     }
 }

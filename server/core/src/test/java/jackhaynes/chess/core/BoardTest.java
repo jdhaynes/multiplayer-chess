@@ -13,8 +13,8 @@ class BoardTest {
     private final int EXPECTED_Y_DIM = 8;
 
     private class PieceStub extends Piece {
-        public PieceStub(Board board, PieceColour colour) {
-            super(board, colour);
+        public PieceStub(Board board, PieceColour colour, int x, int y) {
+            super(board, colour, x, y);
         }
 
         @Override
@@ -32,8 +32,8 @@ class BoardTest {
     public void Given_NewBoard_When_Instantiate_Should_HaveNoPieces() {
         Board board = new Board();
 
-        for(int i = 0; i < EXPECTED_X_DIM; i++) {
-            for(int j = 0; j < EXPECTED_X_DIM; j++) {
+        for (int i = 0; i < EXPECTED_X_DIM; i++) {
+            for (int j = 0; j < EXPECTED_X_DIM; j++) {
                 assertNull(board.getPiece(j, i));
             }
         }
@@ -43,10 +43,10 @@ class BoardTest {
     public void Given_PlacedPiece_When_GetPieceAtPos_Should_ReturnCorrectPiece() {
         Board board = new Board();
 
-        Piece piece = new PieceStub(board, PieceColour.BLACK);
-        board.placePiece(piece, 4, 5);
+        Piece piece = new PieceStub(board, PieceColour.BLACK, 4, 5);
+        board.placePiece(piece);
 
-        Assertions.assertEquals(piece, board.getPiece(4,5));
+        Assertions.assertEquals(piece, board.getPiece(4, 5));
     }
 
     @Test
@@ -54,15 +54,15 @@ class BoardTest {
         Board board = new Board();
 
         // Test covers pieces placed left, right, above and below board.
-        Piece leftPiece = new PieceStub(board, PieceColour.BLACK);
-        Piece rightPiece = new PieceStub(board, PieceColour.BLACK);
-        Piece topPiece = new PieceStub(board, PieceColour.BLACK);
-        Piece bottomPiece = new PieceStub(board, PieceColour.BLACK);
+        Piece leftPiece = new PieceStub(board, PieceColour.BLACK, -1, EXPECTED_Y_DIM / 2);
+        Piece rightPiece = new PieceStub(board, PieceColour.BLACK, EXPECTED_X_DIM, EXPECTED_Y_DIM / 2);
+        Piece topPiece = new PieceStub(board, PieceColour.BLACK, EXPECTED_X_DIM / 2, -1);
+        Piece bottomPiece = new PieceStub(board, PieceColour.BLACK, EXPECTED_X_DIM / 2, EXPECTED_Y_DIM);
 
-        board.placePiece(leftPiece, -1, EXPECTED_Y_DIM / 2);
-        board.placePiece(rightPiece, EXPECTED_X_DIM, EXPECTED_Y_DIM / 2);
-        board.placePiece(topPiece, EXPECTED_X_DIM / 2, -1);
-        board.placePiece(bottomPiece, EXPECTED_X_DIM / 2, EXPECTED_Y_DIM);
+        board.placePiece(leftPiece);
+        board.placePiece(rightPiece);
+        board.placePiece(topPiece);
+        board.placePiece(bottomPiece);
 
         assertAll(
                 () -> assertNull(board.getPiece(-1, EXPECTED_Y_DIM / 2)),
@@ -86,7 +86,7 @@ class BoardTest {
     public void Given_PlacedPiece_When_RemovePiece_Should_RemoveFromBoard() {
         Board board = new Board();
 
-        board.placePiece(new PieceStub(board, PieceColour.BLACK), 3, 4);
+        board.placePiece(new PieceStub(board, PieceColour.BLACK, 3, 4));
         board.removePiece(3, 4);
 
         assertNull(board.getPiece(3, 4));

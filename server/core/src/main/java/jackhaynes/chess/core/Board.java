@@ -24,9 +24,9 @@ public class Board {
         }
     }
 
-    public void placePiece(Piece piece, int x, int y) {
-        if(this.positionIsWithinBoard(x, y)) {
-            this.board[y][x] = piece;
+    public void placePiece(Piece piece) {
+        if(this.positionIsWithinBoard(piece.getX(), piece.getY())) {
+            this.board[piece.getY()][piece.getX()] = piece;
         }
     }
 

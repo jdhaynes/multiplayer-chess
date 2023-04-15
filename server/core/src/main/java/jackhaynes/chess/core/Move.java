@@ -18,6 +18,14 @@ public class Move {
         calculateVector();
     }
 
+    public MoveType getType() {
+        return this.type;
+    }
+
+    public int getSteps() {
+        return this.steps;
+    }
+
     private void calculateVector() {
         int deltaX = Math.abs(fromX - toX);
         int deltaY = Math.abs(fromY - toY);
@@ -40,13 +48,5 @@ public class Move {
                 this.steps = 0;
             }
         }
-    }
-
-    public MoveType getType() {
-        return this.type;
-    }
-
-    public int getSteps() {
-        return this.steps;
     }
  }

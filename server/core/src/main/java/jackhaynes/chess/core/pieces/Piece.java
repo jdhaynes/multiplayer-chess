@@ -9,9 +9,11 @@ public abstract class Piece {
     protected int x;
     protected int y;
 
-    public Piece(Board board, PieceColour colour) {
+    public Piece(Board board, PieceColour colour, int x, int y) {
         this.board = board;
         this.colour = colour;
+        this.x = x;
+        this.y = y;
     }
 
     public abstract PieceType getType();
@@ -19,5 +21,13 @@ public abstract class Piece {
 
     public PieceColour getColour() {
         return this.colour;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
     }
 }
