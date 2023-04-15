@@ -25,6 +25,8 @@ public class Move {
         return this.type;
     }
 
+    public MoveDirection getDirection() { return this.direction; }
+
     public int getSteps() {
         return this.steps;
     }
