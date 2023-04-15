@@ -42,10 +42,10 @@ public class MoveTest {
         Move northWest = new Move(3, 1, 4, 2);
 
         assertAll(
-                () -> assertEquals(MoveType.VALID_DIAGONAL, northEast.getType()),
-                () -> assertEquals(MoveType.VALID_DIAGONAL, southEast.getType()),
-                () -> assertEquals(MoveType.VALID_DIAGONAL, southWest.getType()),
-                () -> assertEquals(MoveType.VALID_DIAGONAL, northWest.getType())
+                () -> assertEquals(MoveType.SYMMETRICAL_DIAGONAL, northEast.getType()),
+                () -> assertEquals(MoveType.SYMMETRICAL_DIAGONAL, southEast.getType()),
+                () -> assertEquals(MoveType.SYMMETRICAL_DIAGONAL, southWest.getType()),
+                () -> assertEquals(MoveType.SYMMETRICAL_DIAGONAL, northWest.getType())
         );
     }
 
@@ -55,8 +55,8 @@ public class MoveTest {
         Move longerVertical = new Move(2, 3, 1, 6);
 
         assertAll(
-                () -> assertEquals(MoveType.INVALID_DIAGONAL, longerHorizontal.getType()),
-                () -> assertEquals(MoveType.INVALID_DIAGONAL, longerVertical.getType())
+                () -> assertEquals(MoveType.ASYMMETRICAL_DIAGONAL, longerHorizontal.getType()),
+                () -> assertEquals(MoveType.ASYMMETRICAL_DIAGONAL, longerVertical.getType())
         );
     }
 
@@ -98,13 +98,13 @@ public class MoveTest {
     }
 
     @Test
-    public void Given_Non45DegreeMove_When_GetSteps_Should_ReturnZero() {
+    public void Given_Non45DegreeMove_When_GetSteps_Should_ReturnLargestSideSize() {
         Move longerHorizontal = new Move(1, 6, 2, 3);
         Move longerVertical = new Move(2, 3, 1, 6);
 
         assertAll(
-                () -> assertEquals(0, longerHorizontal.getSteps()),
-                () -> assertEquals(0, longerVertical.getSteps())
+                () -> assertEquals(5, longerHorizontal.getSteps()),
+                () -> assertEquals(5, longerVertical.getSteps())
         );
     }
 }

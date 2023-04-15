@@ -23,7 +23,7 @@ public class King extends Piece {
 
         boolean moveStepsValid = (move.getSteps() <= 1);
         boolean moveTypeValid = (move.getType() == MoveType.STRAIGHT ||
-                move.getType() == MoveType.VALID_DIAGONAL);
+                move.getType() == MoveType.SYMMETRICAL_DIAGONAL);
 
         return  moveStepsValid && moveTypeValid;
     }

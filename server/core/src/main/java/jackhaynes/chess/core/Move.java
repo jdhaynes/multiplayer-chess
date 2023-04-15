@@ -41,11 +41,11 @@ public class Move {
             this.steps = Math.max(deltaX, deltaY);
         } else {
             if(deltaX == deltaY) {
-                this.type = MoveType.VALID_DIAGONAL;
+                this.type = MoveType.SYMMETRICAL_DIAGONAL;
                 this.steps = deltaX; // This will be equal to deltaY for valid diag - can use either.
             } else {
-                this.type = MoveType.INVALID_DIAGONAL;
-                this.steps = 0;
+                this.type = MoveType.ASYMMETRICAL_DIAGONAL;
+                this.steps = Math.max(deltaX, deltaY);
             }
         }
     }
