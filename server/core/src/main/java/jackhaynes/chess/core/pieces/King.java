@@ -19,7 +19,7 @@ public class King extends Piece {
             return false;
         }
 
-        Move move = new Move(this.x, toX, this.y, toY);
+        Move move = new Move(this, toX, toY);
 
         boolean moveStepsValid = (move.getSteps() <= 1);
         boolean moveTypeValid = (move.getType() == MoveType.STRAIGHT ||

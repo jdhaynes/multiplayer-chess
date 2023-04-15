@@ -19,7 +19,7 @@ public class Rook extends Piece {
             return false;
         }
 
-        Move move = new Move(this.x, toX, this.y, toY);
+        Move move = new Move(this, toX, toY);
 
         return move.getType() == MoveType.STRAIGHT;
     }

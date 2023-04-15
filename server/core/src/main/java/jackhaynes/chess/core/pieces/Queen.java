@@ -18,7 +18,7 @@ public class Queen extends Piece {
            return false;
        }
 
-       Move move = new Move(this.x, toX, this.y, toY);
+       Move move = new Move(this, toX, toY);
        return move.getType() == MoveType.STRAIGHT || move.getType() == MoveType.SYMMETRICAL_DIAGONAL;
     }
 }
