@@ -1,4 +1,4 @@
-package jackhaynes;
+package jackhaynes.pieces;
 
 public enum PieceType {
     KING,

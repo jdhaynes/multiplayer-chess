@@ -1,6 +1,6 @@
 package jackhaynes;
 
-public enum Player {
+public enum Colour {
     BLACK,
     WHITE
 }

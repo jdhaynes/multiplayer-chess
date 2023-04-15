@@ -1,5 +1,7 @@
 package jackhaynes;
 
+import jackhaynes.pieces.Piece;
+import jackhaynes.pieces.PieceType;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -9,9 +11,18 @@ class BoardTest {
     private final int EXPECTED_Y_DIM = 8;
 
     private class PieceStub extends Piece {
+        public PieceStub(Board board) {
+            super(board);
+        }
+
         @Override
         public PieceType getType() {
             return null;
+        }
+
+        @Override
+        public boolean canMoveTo(int x, int y) {
+            return false;
         }
     }
 
@@ -30,7 +41,7 @@ class BoardTest {
     public void Given_PlacedPiece_When_GetPieceAtPos_Should_ReturnCorrectPiece() {
         Board board = new Board();
 
-        Piece piece = new PieceStub();
+        Piece piece = new PieceStub(board);
         board.placePiece(piece, 4, 5);
 
         assertEquals(piece, board.getPiece(4,5));
@@ -41,10 +52,10 @@ class BoardTest {
         Board board = new Board();
 
         // Test covers pieces placed left, right, above and below board.
-        Piece leftPiece = new PieceStub();
-        Piece rightPiece = new PieceStub();
-        Piece topPiece = new PieceStub();
-        Piece bottomPiece = new PieceStub();
+        Piece leftPiece = new PieceStub(board);
+        Piece rightPiece = new PieceStub(board);
+        Piece topPiece = new PieceStub(board);
+        Piece bottomPiece = new PieceStub(board);
 
         board.placePiece(leftPiece, -1, EXPECTED_Y_DIM / 2);
         board.placePiece(rightPiece, EXPECTED_X_DIM, EXPECTED_Y_DIM / 2);
@@ -73,7 +84,7 @@ class BoardTest {
     public void Given_PlacedPiece_When_RemovePiece_Should_RemoveFromBoard() {
         Board board = new Board();
 
-        board.placePiece(new PieceStub(), 3, 4);
+        board.placePiece(new PieceStub(board), 3, 4);
         board.removePiece(3, 4);
 
         assertNull(board.getPiece(3, 4));
