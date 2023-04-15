@@ -14,39 +14,39 @@ public class Move {
         this.toX = toX;
         this.fromY = fromY;
         this.toY = toY;
+
+        calculateVector();
     }
 
-    public MoveType getType() {
-        if(type != null) {
-            return this.type;
+    private void calculateVector() {
+        int deltaX = Math.abs(fromX - toX);
+        int deltaY = Math.abs(fromY - toY);
+
+        if(deltaX == 0 && deltaY == 0) {
+            this.type = MoveType.STATIC;
+            this.steps = 0;
+            return;
         }
 
-        if(fromX == toX && fromY == toY) {
-            return MoveType.STATIC;
-        }
-
-        if(this.fromX == toX || fromY == toY) {
-            return MoveType.STRAIGHT;
+        if(deltaX == 0 || deltaY == 0) {
+            this.type = MoveType.STRAIGHT;
+            this.steps = Math.max(deltaX, deltaY);
         } else {
-            int deltaX = Math.abs(fromX - toX);
-            int deltaY = Math.abs(fromY - toY);
-
             if(deltaX == deltaY) {
-                return MoveType.VALID_DIAGONAL;
+                this.type = MoveType.VALID_DIAGONAL;
+                this.steps = deltaX; // This will be equal to deltaY for valid diag - can use either.
             } else {
-                return MoveType.INVALID_DIAGONAL;
+                this.type = MoveType.INVALID_DIAGONAL;
+                this.steps = 0;
             }
         }
     }
 
+    public MoveType getType() {
+        return this.type;
+    }
+
     public int getSteps() {
-        if(getType() == MoveType.STRAIGHT) {
-            int deltaX = Math.abs(this.fromX - this.toX);
-            int deltaY = Math.abs(this.fromY - this.toY);
-
-            return(Math.max(deltaX, deltaY));
-        }
-
-        return 0;
+        return this.steps;
     }
  }

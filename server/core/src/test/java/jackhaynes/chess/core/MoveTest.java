@@ -81,4 +81,19 @@ public class MoveTest {
                 () -> assertEquals(2, downTwoMoves.getSteps())
         );
     }
+
+    @Test
+    public void Given_ValidDigagonalMove_When_GetSteps_Should_ReturnCorrectNumber() {
+        Move northEast = new Move(3, 5, 4, 2);
+        Move southEast = new Move(3, 4, 4, 5);
+        Move southWest = new Move(3, 0, 4, 7);
+        Move northWest = new Move(3, 1, 4, 2);
+
+        assertAll(
+                () -> assertEquals(2, northEast.getSteps()),
+                () -> assertEquals(1, southEast.getSteps()),
+                () -> assertEquals(3, southWest.getSteps()),
+                () -> assertEquals(2, northWest.getSteps())
+        );
+    }
 }
