@@ -13,7 +13,41 @@ public class KingTest {
     }
 
     @Test
-    public void Given_HasBoardSpace_When_MoveOneHorizontally_Should_BeValid() {
+    public void Given_SingleKing_When_MoveStraightOneStep_Should_BeValid() {
         Piece piece = new King(new Board(), PieceColour.BLACK, 3, 3);
+
+        // Test all directions (up, down, left, right)
+        assertAll(
+                () -> assertTrue(piece.canMoveTo(2, 3)),
+                () -> assertTrue(piece.canMoveTo(4, 3)),
+                () -> assertTrue(piece.canMoveTo(3, 2)),
+                () -> assertTrue(piece.canMoveTo(3, 4))
+        );
+    }
+
+    @Test
+    public void Given_SingleKing_When_MoveDiagonalOneStep_Should_BeValid() {
+        Piece piece = new King(new Board(), PieceColour.BLACK, 3, 3);
+
+        // Test all directions (northeast, southeast, southwest, northwest)
+        assertAll(
+                () -> assertTrue(piece.canMoveTo(4, 2)),
+                () -> assertTrue(piece.canMoveTo(4, 4)),
+                () -> assertTrue(piece.canMoveTo(2, 4)),
+                () -> assertTrue(piece.canMoveTo(2, 2))
+        );
+    }
+
+    @Test
+    public void Given_SingleKing_When_MoveMoreThanOneStep_Should_NotBeValid() {
+        Piece piece = new King(new Board(), PieceColour.BLACK, 3, 3);
+
+        // Test both straight and diagonal steps
+        assertAll(
+                () -> assertFalse(piece.canMoveTo(1, 3)),
+                () -> assertFalse(piece.canMoveTo(6, 3)),
+                () -> assertFalse(piece.canMoveTo(3, 5)),
+                () -> assertFalse(piece.canMoveTo(1, 3))
+        );
     }
 }
