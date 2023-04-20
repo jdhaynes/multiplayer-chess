@@ -8,11 +8,6 @@ public class King extends Piece {
     }
 
     @Override
-    public PieceType getType() {
-        return PieceType.KING;
-    }
-
-    @Override
     public boolean canMoveTo(int toX, int toY) {
         // TODO: doesn't support "castling" special move.
         if(!board.positionIsWithinBoard(x, y)) {

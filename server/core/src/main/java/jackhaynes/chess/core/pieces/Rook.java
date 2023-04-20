@@ -8,11 +8,6 @@ public class Rook extends Piece {
     }
 
     @Override
-    public PieceType getType() {
-        return PieceType.ROOK;
-    }
-
-    @Override
     public boolean canMoveTo(int toX, int toY) {
         // TODO: doesn't support "castling" special move.
         if(!this.board.positionIsWithinBoard(toX, toY)) {

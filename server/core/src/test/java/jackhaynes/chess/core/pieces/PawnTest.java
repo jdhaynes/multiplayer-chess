@@ -3,18 +3,11 @@ package jackhaynes.chess.core.pieces;
 import jackhaynes.chess.core.Board;
 import jackhaynes.chess.core.Piece;
 import jackhaynes.chess.core.Colour;
-import jackhaynes.chess.core.PieceType;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PawnTest {
-    @Test
-    public void Given_NewPiece_When_GetType_Should_BePawn() {
-        Piece piece = new Pawn(new Board(), Colour.BLACK, 2, 2);
-        assertEquals(PieceType.PAWN, piece.getType());
-    }
-
     @Test
     public void Given_SinglePawn_When_MoveForwardOneOrTwoSteps_Should_BeValidMove() {
         Piece piece = new Pawn(new Board(), Colour.BLACK, 2, 2);

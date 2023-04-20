@@ -8,11 +8,6 @@ public class Pawn extends Piece {
     }
 
     @Override
-    public PieceType getType() {
-        return PieceType.PAWN;
-    }
-
-    @Override
     public boolean canMoveTo(int toX, int toY) {
         if(!this.board.positionIsWithinBoard(toX, toY)) {
             return false;

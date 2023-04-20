@@ -16,9 +16,7 @@ public abstract class Piece {
         this.hasMoved = false;
     }
 
-    public abstract PieceType getType();
     public abstract boolean canMoveTo(int toX, int toY);
-
 
     public void move(int toX, int toY) {
         if(this.board.positionIsWithinBoard(toX, toY)) {

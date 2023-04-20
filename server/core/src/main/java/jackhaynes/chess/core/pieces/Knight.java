@@ -8,11 +8,6 @@ public class Knight extends Piece {
     }
 
     @Override
-    public PieceType getType() {
-         return PieceType.KNIGHT;
-    }
-
-    @Override
     public boolean canMoveTo(int toX, int toY) {
         if(!this.board.positionIsWithinBoard(toX, toY)) {
             return false;

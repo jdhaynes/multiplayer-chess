@@ -3,19 +3,12 @@ package jackhaynes.chess.core.pieces;
 import jackhaynes.chess.core.Board;
 import jackhaynes.chess.core.Piece;
 import jackhaynes.chess.core.Colour;
-import jackhaynes.chess.core.PieceType;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class QueenTest {
-    @Test
-    public void Given_NewPiece_When_GetType_Should_BeQueen() {
-        Piece piece = new Queen(new Board(), Colour.BLACK, 2, 2);
-        assertEquals(PieceType.QUEEN, piece.getType());
-    }
-
     @Test
     public void Given_SingleQueen_When_MoveStraightOneStep_Should_BeValid() {
         Piece piece = new Queen(new Board(), Colour.BLACK, 3, 3);

@@ -3,18 +3,11 @@ package jackhaynes.chess.core.pieces;
 import jackhaynes.chess.core.Board;
 import jackhaynes.chess.core.Piece;
 import jackhaynes.chess.core.Colour;
-import jackhaynes.chess.core.PieceType;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class KnightTest {
-    @Test
-    public void Given_NewPiece_When_GetType_Should_BeKnight() {
-        Piece piece = new Knight(new Board(), Colour.BLACK, 2, 2);
-        assertEquals(PieceType.KNIGHT, piece.getType());
-    }
-
     @Test
     public void Given_SingleKnight_When_MoveOneByTwo_Should_BeValidMove() {
         Piece piece = new Knight(new Board(), Colour.BLACK, 3, 3);

@@ -8,11 +8,6 @@ public class Queen extends Piece {
     }
 
     @Override
-    public PieceType getType() {
-        return PieceType.QUEEN;
-    }
-
-    @Override
     public boolean canMoveTo(int toX, int toY) {
        if(!this.board.positionIsWithinBoard(toX, toY)) {
            return false;
