@@ -2,7 +2,7 @@ package jackhaynes.chess.core.pieces;
 
 import jackhaynes.chess.core.Board;
 import jackhaynes.chess.core.Piece;
-import jackhaynes.chess.core.PieceColour;
+import jackhaynes.chess.core.Colour;
 import jackhaynes.chess.core.PieceType;
 import org.junit.jupiter.api.Test;
 
@@ -12,13 +12,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class QueenTest {
     @Test
     public void Given_NewPiece_When_GetType_Should_BeQueen() {
-        Piece piece = new Queen(new Board(), PieceColour.BLACK, 2, 2);
+        Piece piece = new Queen(new Board(), Colour.BLACK, 2, 2);
         assertEquals(PieceType.QUEEN, piece.getType());
     }
 
     @Test
     public void Given_SingleQueen_When_MoveStraightOneStep_Should_BeValid() {
-        Piece piece = new Queen(new Board(), PieceColour.BLACK, 3, 3);
+        Piece piece = new Queen(new Board(), Colour.BLACK, 3, 3);
 
         // Test all directions (up, down, left, right)
         assertAll(
@@ -31,7 +31,7 @@ public class QueenTest {
 
     @Test
     public void Given_SingleQueen_When_MoveDiagonalOneStep_Should_BeValid() {
-        Piece piece = new Queen(new Board(), PieceColour.BLACK, 3, 3);
+        Piece piece = new Queen(new Board(), Colour.BLACK, 3, 3);
 
         // Test all directions (northeast, southeast, southwest, northwest)
         assertAll(
@@ -44,7 +44,7 @@ public class QueenTest {
 
     @Test
     public void Given_SingleQueen_When_MoveMoreThanOneStep_Should_BeValid() {
-        Piece piece = new Queen(new Board(), PieceColour.BLACK, 3, 3);
+        Piece piece = new Queen(new Board(), Colour.BLACK, 3, 3);
 
         // Test both straight and diagonal steps
         assertAll(
@@ -58,7 +58,7 @@ public class QueenTest {
     @Test
     public void Given_SingleQueen_When_MoveToOffBoard_Should_NotBeValid() {
         Board board = new Board();
-        Piece piece = new Queen(new Board(), PieceColour.BLACK, 3, 3);
+        Piece piece = new Queen(new Board(), Colour.BLACK, 3, 3);
 
         // Test each side of board at first position out of bounds
         assertAll(

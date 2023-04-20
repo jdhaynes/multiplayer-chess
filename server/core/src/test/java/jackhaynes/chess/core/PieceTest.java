@@ -1,16 +1,12 @@
 package jackhaynes.chess.core;
 
-import jackhaynes.chess.core.Board;
-import jackhaynes.chess.core.Piece;
-import jackhaynes.chess.core.PieceColour;
-import jackhaynes.chess.core.PieceType;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PieceTest {
     private class GenericPiece extends Piece {
-        public GenericPiece(Board board, PieceColour colour, int x, int y)
+        public GenericPiece(Board board, Colour colour, int x, int y)
         {
             super(board, colour, x, y);
         }
@@ -28,26 +24,26 @@ public class PieceTest {
 
     @Test
     public void Given_WhitePiece_When_GetColour_Should_BeWhite() {
-        Piece piece = new GenericPiece(new Board(), PieceColour.WHITE, 2, 2);
-        assertEquals(PieceColour.WHITE, piece.getColour());
+        Piece piece = new GenericPiece(new Board(), Colour.WHITE, 2, 2);
+        assertEquals(Colour.WHITE, piece.getColour());
     }
 
     @Test
     public void Given_NewPiece_When_GetHasMoved_Should_HaveNotMoved() {
-        Piece piece = new GenericPiece(new Board(), PieceColour.WHITE, 2, 2);
+        Piece piece = new GenericPiece(new Board(), Colour.WHITE, 2, 2);
         assertFalse(piece.hasMoved);
     }
 
     @Test
     public void Given_MovedPiece_When_GetHasMoved_Should_HaveMoved() {
-        Piece piece = new GenericPiece(new Board(), PieceColour.WHITE, 2, 2);
+        Piece piece = new GenericPiece(new Board(), Colour.WHITE, 2, 2);
         piece.move(3, 3);
         assertTrue(piece.hasMoved());
     }
 
     @Test
     public void Given_Piece_When_Move_Should_UpdatePosition() {
-        Piece piece = new GenericPiece(new Board(), PieceColour.WHITE, 2, 2);
+        Piece piece = new GenericPiece(new Board(), Colour.WHITE, 2, 2);
         piece.move(5, 1);
 
         assertAll(

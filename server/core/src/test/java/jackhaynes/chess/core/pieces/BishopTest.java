@@ -2,7 +2,7 @@ package jackhaynes.chess.core.pieces;
 
 import jackhaynes.chess.core.Board;
 import jackhaynes.chess.core.Piece;
-import jackhaynes.chess.core.PieceColour;
+import jackhaynes.chess.core.Colour;
 import jackhaynes.chess.core.PieceType;
 import org.junit.jupiter.api.Test;
 
@@ -12,13 +12,13 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 public class BishopTest {
     @Test
     public void Given_NewPiece_When_GetType_Should_BeRook() {
-        Piece piece = new Bishop(new Board(), PieceColour.BLACK, 2, 2);
+        Piece piece = new Bishop(new Board(), Colour.BLACK, 2, 2);
         assertEquals(PieceType.BISHOP, piece.getType());
     }
 
     @Test
     public void Given_SingleBishop_When_MoveDiagonal_Should_BeValid() {
-        Piece piece = new Bishop(new Board(), PieceColour.BLACK, 3, 3);
+        Piece piece = new Bishop(new Board(), Colour.BLACK, 3, 3);
 
         // Test all directions (northeast, southeast, southwest, northwest)
         assertAll(
@@ -31,7 +31,7 @@ public class BishopTest {
 
     @Test
     public void Given_SingleBishop_When_MoveStraight_Should_NotBeValid() {
-        Piece piece = new Bishop(new Board(), PieceColour.BLACK, 3, 3);
+        Piece piece = new Bishop(new Board(), Colour.BLACK, 3, 3);
 
         // Test all directions (up, down, left, right)
         assertAll(
@@ -44,7 +44,7 @@ public class BishopTest {
 
     @Test
     public void Given_SingleBishop_When_MoveMoreThanOneStep_Should_BeValid() {
-        Piece piece = new Bishop(new Board(), PieceColour.BLACK, 3, 3);
+        Piece piece = new Bishop(new Board(), Colour.BLACK, 3, 3);
 
         assertAll(
                 () -> assertTrue(piece.canMoveTo(6, 0)),
@@ -57,7 +57,7 @@ public class BishopTest {
     @Test
     public void Given_SingleBishop_When_MoveToOffBoardDiagonal_Should_NotBeValid() {
         Board board = new Board();
-        Piece piece = new Bishop(new Board(), PieceColour.BLACK, 3, 3);
+        Piece piece = new Bishop(new Board(), Colour.BLACK, 3, 3);
 
         // Test each side of board at first position out of bounds
         assertAll(

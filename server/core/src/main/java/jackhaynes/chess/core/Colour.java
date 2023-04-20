@@ -1,6 +1,6 @@
 package jackhaynes.chess.core;
 
-public enum PieceColour {
+public enum Colour {
     BLACK,
     WHITE
 }

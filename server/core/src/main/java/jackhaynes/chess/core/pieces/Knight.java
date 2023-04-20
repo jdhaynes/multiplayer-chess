@@ -3,7 +3,7 @@ package jackhaynes.chess.core.pieces;
 import jackhaynes.chess.core.*;
 
 public class Knight extends Piece {
-    public Knight(Board board, PieceColour colour, int x, int y) {
+    public Knight(Board board, Colour colour, int x, int y) {
         super(board, colour, x, y);
     }
 

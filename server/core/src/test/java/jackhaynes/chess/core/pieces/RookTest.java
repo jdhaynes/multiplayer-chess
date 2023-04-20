@@ -2,7 +2,7 @@ package jackhaynes.chess.core.pieces;
 
 import jackhaynes.chess.core.Board;
 import jackhaynes.chess.core.Piece;
-import jackhaynes.chess.core.PieceColour;
+import jackhaynes.chess.core.Colour;
 import jackhaynes.chess.core.PieceType;
 import org.junit.jupiter.api.Test;
 
@@ -11,14 +11,14 @@ import static org.junit.jupiter.api.Assertions.*;
 public class RookTest {
     @Test
     public void Given_NewPiece_When_GetType_Should_BeRook() {
-        Piece piece = new Rook(new Board(), PieceColour.BLACK, 2, 2);
+        Piece piece = new Rook(new Board(), Colour.BLACK, 2, 2);
         assertEquals(PieceType.ROOK, piece.getType());
     }
 
     @Test
     public void Given_SingleRook_When_MoveStraightMultipleStepsToEdge_Should_BeValidMove() {
         Board board = new Board();
-        Piece piece = new Rook(board, PieceColour.BLACK, 3, 3);
+        Piece piece = new Rook(board, Colour.BLACK, 3, 3);
 
         assertAll(
                 () -> assertTrue(piece.canMoveTo(0, 3)),
@@ -31,7 +31,7 @@ public class RookTest {
     @Test
     public void Given_SingleRook_When_MoveStraightOffBoard_Should_NotBeValidMove() {
         Board board = new Board();
-        Piece piece = new Rook(board, PieceColour.BLACK, 3, 3);
+        Piece piece = new Rook(board, Colour.BLACK, 3, 3);
 
         assertAll(
                 () -> assertFalse(piece.canMoveTo(-1, 3)),
@@ -44,7 +44,7 @@ public class RookTest {
     @Test
     public void Given_SingleRook_When_MoveDiagonal_Should_NotBeValidMove() {
         Board board = new Board();
-        Piece piece = new Rook(board, PieceColour.BLACK, 3, 3);
+        Piece piece = new Rook(board, Colour.BLACK, 3, 3);
 
         assertAll(
                 () -> assertFalse(piece.canMoveTo(4, 2)),

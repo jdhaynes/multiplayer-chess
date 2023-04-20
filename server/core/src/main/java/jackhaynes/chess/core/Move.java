@@ -31,6 +31,16 @@ public class Move {
         return this.steps;
     }
 
+    private void straightLine(int signedDeltaX, int signedDeltaY) {
+        // Vertical move
+        if(signedDeltaX == 0) {
+            // code to loop through every integer between this.fromY and this.toY
+
+        } else {
+
+        }
+    }
+
     private void calculateVector() {
         int signedDeltaX = toX - fromX;
         int signedDeltaY = toY - fromY;
@@ -49,13 +59,14 @@ public class Move {
             this.type = MoveType.STRAIGHT;
             this.direction = MoveDirection.SIDE;
             this.steps = Math.abs(signedDeltaX);
+            straightLine(signedDeltaX, signedDeltaY);
 
             return;
         }
 
         // Has a component of vertical movement (either straight vertical, or diagonal)
-        boolean isMovingForward = (this.piece.colour == PieceColour.BLACK && signedDeltaY > 0) ||
-                (this.piece.colour == PieceColour.WHITE && signedDeltaY < 0);
+        boolean isMovingForward = (this.piece.colour == Colour.BLACK && signedDeltaY > 0) ||
+                (this.piece.colour == Colour.WHITE && signedDeltaY < 0);
 
         this.direction = isMovingForward ? MoveDirection.FORWARD : MoveDirection.BACKWARD;
 
@@ -63,6 +74,7 @@ public class Move {
         if(signedDeltaX == 0) {
             this.type = MoveType.STRAIGHT;
             this.steps = Math.abs(signedDeltaY);
+            straightLine(signedDeltaX, signedDeltaY);
 
             return;
         }
