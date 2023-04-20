@@ -12,11 +12,6 @@ public class MoveTest {
         }
 
         @Override
-        public PieceType getType() {
-            return null;
-        }
-
-        @Override
         public boolean canMoveTo(int toX, int toY) {
             return false;
         }
