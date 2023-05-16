@@ -1,6 +1,7 @@
 package jackhaynes.chess.core.pieces;
 
 import jackhaynes.chess.core.Board;
+import jackhaynes.chess.core.Move;
 import jackhaynes.chess.core.Piece;
 import jackhaynes.chess.core.Colour;
 import org.junit.jupiter.api.Test;
@@ -14,10 +15,10 @@ public class RookTest {
         Piece piece = new Rook(board, Colour.BLACK, 3, 3);
 
         assertAll(
-                () -> assertTrue(piece.canMoveTo(0, 3)),
-                () -> assertTrue(piece.canMoveTo(board.getXDimension() - 1, 3)),
-                () -> assertTrue(piece.canMoveTo(3, 0)),
-                () -> assertTrue(piece.canMoveTo(3, board.getYDimension() - 1))
+                () -> assertTrue(piece.canPerformMove(new Move(piece, 0, 3))),
+                () -> assertTrue(piece.canPerformMove(new Move(piece, board.getXDimension() - 1, 3))),
+                () -> assertTrue(piece.canPerformMove(new Move(piece, 3, 0))),
+                () -> assertTrue(piece.canPerformMove(new Move(piece, 3, board.getYDimension() - 1)))
         );
     }
 
@@ -27,10 +28,10 @@ public class RookTest {
         Piece piece = new Rook(board, Colour.BLACK, 3, 3);
 
         assertAll(
-                () -> assertFalse(piece.canMoveTo(-1, 3)),
-                () -> assertFalse(piece.canMoveTo(board.getXDimension(), 3)),
-                () -> assertFalse(piece.canMoveTo(3, -1)),
-                () -> assertFalse(piece.canMoveTo(3, board.getYDimension()))
+                () -> assertFalse(piece.canPerformMove(new Move(piece, -1, 3))),
+                () -> assertFalse(piece.canPerformMove(new Move(piece, board.getXDimension(), 3))),
+                () -> assertFalse(piece.canPerformMove(new Move(piece, 3, -1))),
+                () -> assertFalse(piece.canPerformMove(new Move(piece, 3, board.getYDimension())))
         );
     }
 
@@ -40,10 +41,10 @@ public class RookTest {
         Piece piece = new Rook(board, Colour.BLACK, 3, 3);
 
         assertAll(
-                () -> assertFalse(piece.canMoveTo(4, 2)),
-                () -> assertFalse(piece.canMoveTo(4, 4)),
-                () -> assertFalse(piece.canMoveTo(2, 4)),
-                () -> assertFalse(piece.canMoveTo(2, 2))
+                () -> assertFalse(piece.canPerformMove(new Move(piece, 4, 2))),
+                () -> assertFalse(piece.canPerformMove(new Move(piece, 4, 4))),
+                () -> assertFalse(piece.canPerformMove(new Move(piece, 2, 4))),
+                () -> assertFalse(piece.canPerformMove(new Move(piece, 2, 2)))
 
         );
     }

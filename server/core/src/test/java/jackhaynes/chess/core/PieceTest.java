@@ -12,7 +12,7 @@ public class PieceTest {
         }
 
         @Override
-        public boolean canMoveTo(int x, int y) {
+        public boolean canPerformMove(Move move) {
             return false;
         }
     }

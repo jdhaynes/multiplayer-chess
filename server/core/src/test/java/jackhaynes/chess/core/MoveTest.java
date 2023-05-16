@@ -12,7 +12,7 @@ public class MoveTest {
         }
 
         @Override
-        public boolean canMoveTo(int toX, int toY) {
+        public boolean canPerformMove(Move move) {
             return false;
         }
     }

@@ -8,12 +8,15 @@ public class Queen extends Piece {
     }
 
     @Override
-    public boolean canMoveTo(int toX, int toY) {
-       if(!this.board.positionIsWithinBoard(toX, toY)) {
+    public boolean canPerformMove(Move move) {
+       if(!this.board.positionIsWithinBoard(move.getToX(), move.getToY())) {
            return false;
        }
 
-       Move move = new Move(this, toX, toY);
-       return move.getType() == MoveType.STRAIGHT || move.getType() == MoveType.SYMMETRICAL_DIAGONAL;
+       boolean isStraightMove = move.getType() == MoveType.STRAIGHT;
+       boolean isSymmetricalDiagonalMove = move.getType() == MoveType.SYMMETRICAL_DIAGONAL;
+       boolean isNotBlockedByPiece = !move.isBlockedByPiece();
+
+       return (isStraightMove || isSymmetricalDiagonalMove) && isNotBlockedByPiece;
     }
 }

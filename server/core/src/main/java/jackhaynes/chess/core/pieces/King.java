@@ -8,18 +8,16 @@ public class King extends Piece {
     }
 
     @Override
-    public boolean canMoveTo(int toX, int toY) {
-        // TODO: doesn't support "castling" special move.
-        if(!board.positionIsWithinBoard(x, y)) {
+    public boolean canPerformMove(Move move) {
+        if(!board.positionIsWithinBoard(move.getToX(), move.getToY())) {
             return false;
         }
-
-        Move move = new Move(this, toX, toY);
 
         boolean moveStepsValid = (move.getSteps() <= 1);
         boolean moveTypeValid = (move.getType() == MoveType.STRAIGHT ||
                 move.getType() == MoveType.SYMMETRICAL_DIAGONAL);
+        boolean isNotBlockedByPiece = !move.isBlockedByPiece();
 
-        return  moveStepsValid && moveTypeValid;
+        return  moveStepsValid && moveTypeValid && isNotBlockedByPiece;
     }
 }

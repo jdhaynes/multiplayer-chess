@@ -8,18 +8,16 @@ public class Pawn extends Piece {
     }
 
     @Override
-    public boolean canMoveTo(int toX, int toY) {
-        if(!this.board.positionIsWithinBoard(toX, toY)) {
+    public boolean canPerformMove(Move move) {
+        if(!this.board.positionIsWithinBoard(move.getToX(), move.getToY())) {
             return false;
         }
-
-        // TODO: doesn't capture more complex behaviour
-        Move move = new Move(this, toX, toY);
 
         return (
                 move.getSteps() <= 2 &&
                 move.getType() == MoveType.STRAIGHT &&
-                move.getDirection() == MoveDirection.FORWARD
+                move.getDirection() == MoveDirection.FORWARD &&
+                !move.isBlockedByPiece()
         );
     }
 }

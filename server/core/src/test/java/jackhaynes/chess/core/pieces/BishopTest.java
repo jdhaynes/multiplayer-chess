@@ -1,12 +1,12 @@
 package jackhaynes.chess.core.pieces;
 
 import jackhaynes.chess.core.Board;
+import jackhaynes.chess.core.Move;
 import jackhaynes.chess.core.Piece;
 import jackhaynes.chess.core.Colour;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class BishopTest {
     @Test
@@ -15,10 +15,10 @@ public class BishopTest {
 
         // Test all directions (northeast, southeast, southwest, northwest)
         assertAll(
-                () -> assertTrue(piece.canMoveTo(4, 2)),
-                () -> assertTrue(piece.canMoveTo(4, 4)),
-                () -> assertTrue(piece.canMoveTo(2, 4)),
-                () -> assertTrue(piece.canMoveTo(2, 2))
+                () -> assertTrue(piece.canPerformMove(new Move(piece, 4, 2))),
+                () -> assertTrue(piece.canPerformMove(new Move(piece, 4, 4))),
+                () -> assertTrue(piece.canPerformMove(new Move(piece, 2, 4))),
+                () -> assertTrue(piece.canPerformMove(new Move(piece, 2, 2)))
         );
     }
 
@@ -28,10 +28,10 @@ public class BishopTest {
 
         // Test all directions (up, down, left, right)
         assertAll(
-                () -> assertFalse(piece.canMoveTo(2, 3)),
-                () -> assertFalse(piece.canMoveTo(4, 3)),
-                () -> assertFalse(piece.canMoveTo(3, 2)),
-                () -> assertFalse(piece.canMoveTo(3, 4))
+                () -> assertFalse(piece.canPerformMove(new Move(piece, 2, 3))),
+                () -> assertFalse(piece.canPerformMove(new Move(piece, 4, 3))),
+                () -> assertFalse(piece.canPerformMove(new Move(piece, 3, 2))),
+                () -> assertFalse(piece.canPerformMove(new Move(piece, 3, 4)))
         );
     }
 
@@ -40,10 +40,10 @@ public class BishopTest {
         Piece piece = new Bishop(new Board(), Colour.BLACK, 3, 3);
 
         assertAll(
-                () -> assertTrue(piece.canMoveTo(6, 0)),
-                () -> assertTrue(piece.canMoveTo(6, 6)),
-                () -> assertTrue(piece.canMoveTo(0, 6)),
-                () -> assertTrue(piece.canMoveTo(0, 0))
+                () -> assertTrue(piece.canPerformMove(new Move(piece, 6, 0))),
+                () -> assertTrue(piece.canPerformMove(new Move(piece, 6, 6))),
+                () -> assertTrue(piece.canPerformMove(new Move(piece, 0, 6))),
+                () -> assertTrue(piece.canPerformMove(new Move(piece, 0, 0)))
         );
     }
 
@@ -54,10 +54,10 @@ public class BishopTest {
 
         // Test each side of board at first position out of bounds
         assertAll(
-                () -> assertFalse(piece.canMoveTo(7, -1)),
-                () -> assertFalse(piece.canMoveTo(8, 8)),
-                () -> assertFalse(piece.canMoveTo(-1, 7)),
-                () -> assertFalse(piece.canMoveTo(-1, -1))
+                () -> assertFalse(piece.canPerformMove(new Move(piece, 7, -1))),
+                () -> assertFalse(piece.canPerformMove(new Move(piece, 8, 8))),
+                () -> assertFalse(piece.canPerformMove(new Move(piece, -1, 7))),
+                () -> assertFalse(piece.canPerformMove(new Move(piece, -1, -1)))
         );
     }
 }

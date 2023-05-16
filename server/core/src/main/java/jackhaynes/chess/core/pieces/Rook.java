@@ -8,14 +8,11 @@ public class Rook extends Piece {
     }
 
     @Override
-    public boolean canMoveTo(int toX, int toY) {
-        // TODO: doesn't support "castling" special move.
-        if(!this.board.positionIsWithinBoard(toX, toY)) {
+    public boolean canPerformMove(Move move) {
+        if(!this.board.positionIsWithinBoard(move.getToX(), move.getToY())) {
             return false;
         }
 
-        Move move = new Move(this, toX, toY);
-
-        return move.getType() == MoveType.STRAIGHT;
+        return move.getType() == MoveType.STRAIGHT && !move.isBlockedByPiece();
     }
 }
