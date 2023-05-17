@@ -1,5 +1,7 @@
 package jackhaynes.chess.core;
 
+import jackhaynes.chess.core.exceptions.MoveNotAllowedException;
+
 public class Game {
     private Board board;
     private GameStatus status;
@@ -19,16 +21,22 @@ public class Game {
         this.currentPlayer = Colour.WHITE;
     }
 
-    public boolean playerMove(Colour playerColour, int fromX, int toX, int fromY, int toY) {
-        if(playerColour != this.currentPlayer || this.status != GameStatus.ACTIVE) {
-            return false;
-        }
+    public void playerMove(Colour playerColour, int fromX, int toX, int fromY, int toY)
+            throws MoveNotAllowedException {
+        if(this.status != GameStatus.ACTIVE) { throw new MoveNotAllowedException("The game is not active."); }
+        if(playerColour != this.currentPlayer) { throw new MoveNotAllowedException("It is not your turn."); }
 
         Piece targetPiece = this.board.getPiece(fromX, fromY);
-        if(targetPiece == null || targetPiece.getColour() == playerColour) {
-            return false;
-        }
 
-        return true;
+        if(targetPiece == null) { throw new MoveNotAllowedException("There is no piece at the specified position."); }
+        if(targetPiece.getColour() != playerColour) { throw new MoveNotAllowedException("You do not own this piece."); }
+
+        this.board.movePiece(targetPiece, toX, toY);
+
+        this.switchPlayer();
+    }
+
+    private void switchPlayer() {
+        this.currentPlayer = (this.currentPlayer == Colour.WHITE) ? Colour.BLACK : Colour.WHITE;
     }
 }

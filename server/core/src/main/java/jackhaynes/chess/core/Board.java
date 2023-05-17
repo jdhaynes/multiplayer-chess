@@ -1,5 +1,6 @@
 package jackhaynes.chess.core;
 
+import jackhaynes.chess.core.exceptions.MoveNotAllowedException;
 import jackhaynes.chess.core.pieces.*;
 
 public class Board {
@@ -45,7 +46,7 @@ public class Board {
     }
 
     public Piece getPiece(int x, int y) {
-        if(this.positionIsWithinBoard(x, y)) {
+        if (this.positionIsWithinBoard(x, y)) {
             return this.board[y][x];
         } else {
             return null;
@@ -53,13 +54,23 @@ public class Board {
     }
 
     public void placePiece(Piece piece) {
-        if(this.positionIsWithinBoard(piece.getX(), piece.getY())) {
+        if (this.positionIsWithinBoard(piece.getX(), piece.getY())) {
             this.board[piece.getY()][piece.getX()] = piece;
         }
     }
 
+    public void movePiece(Piece piece, int toX, int toY) throws MoveNotAllowedException {
+        Move move = new Move(piece, toX, toY);
+        if (piece.canPerformMove(move)) {
+            this.removePiece(piece.getX(), piece.getY());
+            this.placePiece(piece);
+        } else {
+            throw new MoveNotAllowedException("The piece cannot perform this move.");
+        }
+    }
+
     public void removePiece(int x, int y) {
-        if(this.positionIsWithinBoard(x, y)) {
+        if (this.positionIsWithinBoard(x, y)) {
             this.board[y][x] = null;
         }
     }
