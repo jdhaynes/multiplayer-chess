@@ -33,10 +33,21 @@ public class Game {
 
         this.board.movePiece(targetPiece, toX, toY);
 
+        this.updateStatus();
         this.switchPlayer();
     }
 
     private void switchPlayer() {
         this.currentPlayer = (this.currentPlayer == Colour.WHITE) ? Colour.BLACK : Colour.WHITE;
+    }
+
+    private void updateStatus() {
+        if(this.board.whiteIsInCheck()) {
+            this.status = GameStatus.WHITE_IN_CHECK;
+        }
+
+        if(this.board.blackIsInCheck()) {
+            this.status = GameStatus.BLACK_IN_CHECK;
+        }
     }
 }
