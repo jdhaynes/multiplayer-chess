@@ -23,13 +23,21 @@ public class Game {
 
     public void move(Colour playerColour, int fromX, int toX, int fromY, int toY)
             throws MoveNotAllowedException {
-        if(this.status != GameStatus.ACTIVE) { throw new MoveNotAllowedException("The game is not active."); }
-        if(playerColour != this.currentPlayer) { throw new MoveNotAllowedException("It is not your turn."); }
+        if (this.status != GameStatus.ACTIVE) {
+            throw new MoveNotAllowedException("The game is not active.");
+        }
+        if (playerColour != this.currentPlayer) {
+            throw new MoveNotAllowedException("It is not your turn.");
+        }
 
         Piece targetPiece = this.board.getPiece(fromX, fromY);
 
-        if(targetPiece == null) { throw new MoveNotAllowedException("There is no piece at the specified position."); }
-        if(targetPiece.getColour() != playerColour) { throw new MoveNotAllowedException("You do not own this piece."); }
+        if (targetPiece == null) {
+            throw new MoveNotAllowedException("There is no piece at the specified position.");
+        }
+        if (targetPiece.getColour() != playerColour) {
+            throw new MoveNotAllowedException("You do not own this piece.");
+        }
 
         this.board.movePiece(targetPiece, toX, toY);
 
@@ -38,7 +46,9 @@ public class Game {
     }
 
     public void resign(Colour playerColour) throws MoveNotAllowedException {
-        if(playerColour != this.currentPlayer) { throw new MoveNotAllowedException("It is not your turn."); }
+        if (playerColour != this.currentPlayer) {
+            throw new MoveNotAllowedException("It is not your turn.");
+        }
         this.status = (playerColour == Colour.WHITE) ? GameStatus.BLACK_WIN : GameStatus.WHITE_WIN;
     }
 
@@ -47,12 +57,22 @@ public class Game {
     }
 
     private void updateStatus() {
-        if(this.board.whiteIsInCheck()) {
-            this.status = GameStatus.WHITE_IN_CHECK;
-        }
+        if (this.board.whiteIsInCheck()) {
+            if (this.board.whiteIsInCheckmate()) {
+                this.status = GameStatus.BLACK_WIN;
+            } else {
+                this.status = GameStatus.WHITE_IN_CHECK;
 
-        if(this.board.blackIsInCheck()) {
-            this.status = GameStatus.BLACK_IN_CHECK;
+                return;
+            }
+
+            if (this.board.blackIsInCheck()) {
+                if (this.board.blackIsInCheckmate()) {
+                    this.status = GameStatus.WHITE_WIN;
+                } else {
+                    this.status = GameStatus.BLACK_IN_CHECK;
+                }
+            }
         }
     }
 }

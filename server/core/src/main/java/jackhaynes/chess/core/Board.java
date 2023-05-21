@@ -91,6 +91,7 @@ public class Board {
             throw new MoveNotAllowedException("The piece cannot perform this move.");
         }
 
+        this.removePiece(toX, toY);
         this.removePiece(piece.getX(), piece.getY());
         this.placePiece(piece);
     }
@@ -129,6 +130,10 @@ public class Board {
     public boolean blackIsInCheck() {
         return this.blackKing.isInCheck();
     }
+
+    public boolean whiteIsInCheckmate() { return this.whiteKing.isInCheckmate(); }
+
+    public boolean blackIsInCheckmate() { return this.blackKing.isInCheckmate(); }
 
     public int getYDimension() {
         return this.board.length;

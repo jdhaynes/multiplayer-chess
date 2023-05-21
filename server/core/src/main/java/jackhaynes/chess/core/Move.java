@@ -42,8 +42,6 @@ public class Move {
         return this.blockingPieces.size() > 0;
     }
 
-    public List<Piece> getBlockingPieces() { return this.blockingPieces; }
-
     private List<Piece> getStraightMoveBlockingPieces(int signedDeltaX, int signedDeltaY) {
         List<Piece> blockingPieces = new ArrayList<Piece>();
 
@@ -144,16 +142,8 @@ public class Move {
         }
     }
 
-    public int getFromX() {
-        return fromX;
-    }
-
     public int getToX() {
         return toX;
-    }
-
-    public int getFromY() {
-        return fromY;
     }
 
     public int getToY() {

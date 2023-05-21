@@ -43,27 +43,17 @@ public class King extends Piece {
             return false;
         }
 
-        // Get pieces in all positions that the king can move to (one step), and check if it can move there.
+        // Get pieces in all positions that the king could move to (one step), and check if it can move there.
         for(int col = this.getX() - 1; col <= this.getX() + 1; col++) {
             for(int row = this.getY() - 1; col <= this.getY(); row++) {
-                if(!board.positionIsWithinBoard(col, row)) {
-                    continue;
-                }
+                if(!board.positionIsWithinBoard(col, row)) { continue;}
 
                 Piece piece = board.getPiece(col, row);
-
-                if(piece == null) {
-                    return false;
-                }
-
-                if(piece.getColour() == this.getColour()) {
-                    continue;
-                }
+                if(piece == null) { return false; }
+                if(piece.getColour() == this.getColour()) { continue; }
 
                 Move move = new Move(piece, col, row);
-                if(this.canPerformMove(move)) {
-                    return false;
-                }
+                if(this.canPerformMove(move)) { return false; }
             }
         }
 
