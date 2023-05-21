@@ -1,5 +1,6 @@
 package jackhaynes.chess.core;
 
+import jackhaynes.chess.core.exceptions.MoveNotAllowedException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -75,7 +76,7 @@ class BoardTest {
     }
 
     @Test
-    public void Given_PlacedPiece_When_RemovePiece_Should_RemoveFromBoard() {
+    public void Given_PlacedPiece_When_RemovePiece_Should_RemoveFromBoard() throws MoveNotAllowedException {
         Board board = new Board();
 
         board.placePiece(new PieceStub(board, Colour.BLACK, 3, 4));

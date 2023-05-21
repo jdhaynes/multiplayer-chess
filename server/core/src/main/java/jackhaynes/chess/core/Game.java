@@ -21,7 +21,7 @@ public class Game {
         this.currentPlayer = Colour.WHITE;
     }
 
-    public void playerMove(Colour playerColour, int fromX, int toX, int fromY, int toY)
+    public void move(Colour playerColour, int fromX, int toX, int fromY, int toY)
             throws MoveNotAllowedException {
         if(this.status != GameStatus.ACTIVE) { throw new MoveNotAllowedException("The game is not active."); }
         if(playerColour != this.currentPlayer) { throw new MoveNotAllowedException("It is not your turn."); }
@@ -35,6 +35,11 @@ public class Game {
 
         this.updateStatus();
         this.switchPlayer();
+    }
+
+    public void resign(Colour playerColour) throws MoveNotAllowedException {
+        if(playerColour != this.currentPlayer) { throw new MoveNotAllowedException("It is not your turn."); }
+        this.status = (playerColour == Colour.WHITE) ? GameStatus.BLACK_WIN : GameStatus.WHITE_WIN;
     }
 
     private void switchPlayer() {
