@@ -9,10 +9,8 @@ public class Bishop extends Piece {
 
     @Override
     public boolean canPerformMove(Move move) {
-        if(!this.board.positionIsWithinBoard(move.getToX(), move.getToY())) {
-            return false;
-        }
-
-        return move.getType() == MoveType.SYMMETRICAL_DIAGONAL && !move.isBlockedByPiece();
+        return super.canPerformMove(move)
+                && move.getType() == MoveType.SYMMETRICAL_DIAGONAL
+                && !move.isBlockedByPiece();
     }
 }

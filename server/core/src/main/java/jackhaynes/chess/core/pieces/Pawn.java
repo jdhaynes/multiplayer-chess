@@ -9,15 +9,10 @@ public class Pawn extends Piece {
 
     @Override
     public boolean canPerformMove(Move move) {
-        if(!this.board.positionIsWithinBoard(move.getToX(), move.getToY())) {
-            return false;
-        }
-
-        return (
-                move.getSteps() <= 2 &&
-                move.getType() == MoveType.STRAIGHT &&
-                move.getDirection() == MoveDirection.FORWARD &&
-                !move.isBlockedByPiece()
-        );
+        return super.canPerformMove(move)
+                && move.getSteps() <= 2
+                && move.getType() == MoveType.STRAIGHT
+                && move.getDirection() == MoveDirection.FORWARD
+                && !move.isBlockedByPiece();
     }
 }

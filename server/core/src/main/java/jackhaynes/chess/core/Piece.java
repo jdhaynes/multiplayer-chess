@@ -16,7 +16,18 @@ public abstract class Piece {
         this.hasMoved = false;
     }
 
-    public abstract boolean canPerformMove(Move move);
+    public boolean canPerformMove(Move move) {
+        if(!this.board.positionIsWithinBoard(move.getToX(), move.getToY())) {
+            return false;
+        }
+
+        Piece targetPiece = this.board.getPiece(move.getToX(), move.getToY());
+        if(targetPiece != null && targetPiece.getColour() == this.getColour()) {
+            return false;
+        }
+
+        return true;
+    }
 
     public void move(int toX, int toY) {
         if(this.board.positionIsWithinBoard(toX, toY)) {

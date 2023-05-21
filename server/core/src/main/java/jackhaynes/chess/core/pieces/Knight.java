@@ -9,13 +9,11 @@ public class Knight extends Piece {
 
     @Override
     public boolean canPerformMove(Move move) {
-        if(!this.board.positionIsWithinBoard(move.getToX(), move.getToY())) {
-            return false;
-        }
-
         boolean isAsymmetricalDiagonal = move.getType() == MoveType.ASYMMETRICAL_DIAGONAL;
         boolean isTwoSteps = move.getSteps() == 2;
 
-        return isAsymmetricalDiagonal && isTwoSteps;
+        return super.canPerformMove(move)
+                && isAsymmetricalDiagonal
+                && isTwoSteps;
     }
 }
